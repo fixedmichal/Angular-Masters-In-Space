@@ -1,0 +1,26 @@
+<h2>Wprowadzanie laboratorium</h2>
+
+<div>
+  <button type="button" routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Szczegóły</button>
+  <button type="button" routerLink="." [queryParams]="{step: 'equipments'}" routerLinkActive="active">Wyposażenie</button>
+</div>
+
+<form novalidate (submit)="saveLab($event)">
+  <div class="step-wrapper">
+    @switch (step()) {
+      @case ('equipments') {
+        <app-lab-equipments-form [forms]="form.equipments"
+          (equipmentAdd)="addEquipment()"
+          (equipmentRemove)="removeEquipment($event)"/>
+      }
+      @default {
+        <app-lab-details-form [form]="form.details"/>
+      }
+    }
+  </div>
+
+  <div>
+    <button type="button" routerLink="../..">Anuluj</button>
+    <button type="submit">Zapisz</button>
+  </div>
+</form>

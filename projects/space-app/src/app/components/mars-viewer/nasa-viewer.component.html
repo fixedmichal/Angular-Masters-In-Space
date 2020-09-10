@@ -1,0 +1,8 @@
+<div class="nasa-viewer-menu">
+  <label>Wybierz obraz:</label>
+  @for (image of availableImages(); track image) {
+    <button [class.selected]="selectedImage() === image" (click)="selectImage(image)">{{ image }}</button>
+  }
+</div>
+
+<img src="/assets/nasa/{{ selectedImage() }}.jpg" [alt]="selectedImage()">

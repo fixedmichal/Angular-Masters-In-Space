@@ -1,0 +1,1 @@
+ng update @angular/cli @angular/core @angular-architects/native-federation @angular/pwa @angular/cdk @ngrx/store @ngrx/store-devtools @ngrx/signals @ngrx/operators @ngrx/entity @ngrx/effects @cypress/schematic @storybook/angular --force --allow-dirty

@@ -1,0 +1,7 @@
+<h2>Księżyce</h2>
+
+<ul>
+  @for (moon of moons | async; track moon.id) {
+    <li><strong>{{moon.name}} ({{moon.planet}})</strong> - {{moon.description}}</li>
+  }
+</ul>

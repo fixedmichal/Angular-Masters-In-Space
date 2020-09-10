@@ -1,0 +1,17 @@
+<div>
+  <div class="form-field inline">
+    <label>Nazwa</label>
+    <input type="text" [formField]="form().name">
+  </div>
+  <div class="form-field inline">
+    <label>Tag</label>
+    <input type="text" [formField]="form().tag">
+  </div>
+  <div class="form-field inline">
+    <label>Opis</label>
+    <input type="text" [formField]="form().description">
+  </div>
+  <div class="form-field inline">
+    <ng-content select=".remove-button"></ng-content>
+  </div>
+</div>

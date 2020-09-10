@@ -1,0 +1,29 @@
+<div>
+  <div class="form-field inline">
+    <label>Nazwa</label>
+    <input type="text" [formField]="form().name" [class.ng-invalid]="form().name().invalid()">
+  </div>
+
+  <div class="form-field inline">
+    <label>Lokalizacja</label>
+    <input type="number" [formField]="form().moonId" [class.ng-invalid]="form().moonId().invalid()">
+
+    <!-- TODO dodaj kontrolkę z wyborem księżyca wg planety -->
+  </div>
+</div>
+
+<div>
+  <div class="form-field inline">
+    <label>
+      <input type="checkbox" [formField]="form().autonomous">
+      laboratorium autonomiczne
+    </label>
+  </div>
+
+  <div class="form-field inline">
+    <label>
+      <input type="checkbox" [formField]="form().enableTags">
+      włącz tagowanie
+    </label>
+  </div>
+</div>

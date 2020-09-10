@@ -1,0 +1,20 @@
+<table>
+  <thead>
+  <tr>
+    <th>Nazwa</th>
+    <th>Lokalizacja</th>
+    <th>Autonomiczne</th>
+    <th>Włączone tagi</th>
+    <th>Liczba sprzętu</th>
+    <th></th>
+  </tr>
+  </thead>
+  @for (lab of labs(); track lab.id) {
+    <tbody appLabsListItem [lab]="lab">
+      <div class="actions">
+        <button type="button" [routerLink]="['edit', lab.id]">Edytuj</button>
+        <button type="button" (click)="removeLab(lab)">Usuń</button>
+      </div>
+    </tbody>
+  }
+</table>

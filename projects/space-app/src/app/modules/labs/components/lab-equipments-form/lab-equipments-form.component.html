@@ -1,0 +1,6 @@
+<button type="button" (click)="addEquipment()">Dodaj</button>
+@for (form of forms(); track form; let index = $index) {
+  <app-equipment-form [form]="form">
+    <button type="button" class="remove-button" (click)="removeEquipment(index)">Usuń</button>
+  </app-equipment-form>
+}

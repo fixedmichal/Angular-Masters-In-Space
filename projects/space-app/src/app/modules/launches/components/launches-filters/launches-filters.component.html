@@ -1,0 +1,17 @@
+  <label for="sort-control">Sortuj wg kolumny</label>
+  <select [formField]="filtersForm.sort" id="sort-control">
+    <option value="id">Nr lotu</option>
+    <option value="rocketName">Rakieta</option>
+    <option value="launchSiteName">Miejsce</option>
+  </select>
+
+  <label for="order-control">w kierunku</label>
+  <select [formField]="filtersForm.order" id="order-control">
+    <option value="ASC">rosnącym</option>
+    <option value="DESC">malejącym</option>
+  </select>
+
+  <label for="query-control">i wyszukaj</label>
+  <input type="text" [formField]="filtersForm.query" placeholder="podaj frazę" id="query-control">
+
+  <button (click)="search()">Szukaj</button>

@@ -1,0 +1,11 @@
+@if (resource().hasValue()) {
+  <ng-content></ng-content>
+}
+
+@if (resource().isLoading()) {
+  <p>Trwa ładowanie danych...</p>
+}
+
+@if (resource().error()) {
+  <p>Nie udało się załadować danych.</p>
+}

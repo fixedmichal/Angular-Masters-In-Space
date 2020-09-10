@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'tables';
+@use 'forms';
+
+* {
+  font-family: Arial, serif;
+}
+
+body {
+  margin: 0;
+}
+
+.header {
+  text-align: center;
+  background-color: lightgray;
+}
+
+.header button {
+  margin: 4px 10px;
+}
+
+.header a {
+  display: inline-block;
+  color: black;
+  padding: 8px;
+
+  &.active {
+    background-color: darkgray;
+  }
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+img.thumbnail {
+  max-width: 100px;
+}

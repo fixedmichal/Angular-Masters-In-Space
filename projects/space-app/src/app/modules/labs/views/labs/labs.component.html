@@ -1,0 +1,7 @@
+<h2>Laboratoria</h2>
+
+<button type="button" routerLink="create/new">Dodaj</button>
+
+<app-resource-wrapper [resource]="labs">
+  <app-labs-list [labs]="labs.value()" (labRemove)="removeLab($event)"/>
+</app-resource-wrapper>
