@@ -1,0 +1,44 @@
+<tr>
+  <td>
+    @if (launch().missionPatch; as url) {
+      <img class="thumbnail" [src]="url">
+    }
+  </td>
+  <td>
+    #{{launch().id}}
+  </td>
+  <td>
+    {{launch().missionName}}
+  </td>
+  <td>
+    {{launch().rocketName}}
+  </td>
+  <td>
+    {{launch().success}}
+  </td>
+  <td>
+    {{launch().launchDate | date : 'short'}}
+  </td>
+  <td>
+    {{launch().launchSiteName}}
+  </td>
+  <td>
+    @if (launch().links.videoLink; as url) {
+      <a [href]="url" target="_blank">Video</a>
+    }
+    @if (launch().links.presskitLink; as url) {
+      <a [href]="url" target="_blank">Presskit</a>
+    }
+    @if (launch().links.articleLink; as url) {
+      <a [href]="url" target="_blank">Article</a>
+    }
+    @if (launch().links.wikipediaLink; as url) {
+      <a [href]="url" target="_blank">Wikipedia</a>
+    }
+  </td>
+</tr>
+  <tr>
+  <td colspan="8">
+    <ng-content select="app-launch-details"></ng-content>
+  </td>
+</tr>

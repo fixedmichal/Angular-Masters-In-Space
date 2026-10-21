@@ -26,6 +26,7 @@ export class LaunchesService {
 
   updateDetails(detailsUpdate: LaunchDetailsUpdate): Observable<Launch> {
     const {id, details} = detailsUpdate;
+    
     return this.http.post<Launch>(`/api/launches/${id}/details`, {details});
   }
 }

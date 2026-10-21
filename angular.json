@@ -29,7 +29,12 @@
               {
                 "glob": "**/*",
                 "input": "projects/space-app/public"
-              }
+              },
+              {                
+                "input": "dist/shared-lib/assets",
+                "glob": "*",
+                "output": "assets"
+               }
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["projects/shared-styles"]
@@ -99,7 +104,12 @@
               {
                 "glob": "**/*",
                 "input": "projects/space-app/public"
-              }
+              },
+              {                
+                "input": "dist/shared-lib/assets",
+                "glob": "*",
+                "output": "assets"
+               }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -110,6 +120,32 @@
               "projects/space-app/src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "shared-lib": {
+      "projectType": "library",
+      "root": "projects/shared-lib",
+      "sourceRoot": "projects/shared-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/shared-lib/tsconfig.spec.json"
           }
         }
       }
@@ -130,6 +166,7 @@
       "@ngrx/schematics",
       "@cypress/schematic",
       "@schematics/angular"
-    ]
+    ],
+    "analytics": false
   }
 }

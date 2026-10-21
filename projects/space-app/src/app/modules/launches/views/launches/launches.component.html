@@ -1,64 +1,6 @@
 <h2>Starty SpaceX</h2>
+@if (launches | async; as launches) {
+<app-launches-list [launches]="launches | async" (launchDetailsUpdate)="onLaunchDetailsUpdate($event)"></app-launches-list>
+}
 
-<table>
-  <thead>
-  <tr>
-    <th>Naszywka</th>
-    <th>Nr lotu</th>
-    <th>Misja</th>
-    <th>Rakieta</th>
-    <th>Sukces</th>
-    <th>Data</th>
-    <th>Miejsce</th>
-    <th>Linki</th>
-  </tr>
-  </thead>
-  @for (launch of launches | async; track launch.id) {
-    <tbody>
-    <tr>
-      <td>
-        @if (launch.missionPatch) {
-          <img class="thumbnail" [src]="launch.missionPatch">
-        }
-      </td>
-      <td>
-        #{{ launch.id }}
-      </td>
-      <td>
-        {{ launch.missionName }}
-      </td>
-      <td>
-        {{ launch.rocketName }}
-      </td>
-      <td>
-        {{ launch.success }}
-      </td>
-      <td>
-        {{ launch.launchDate | date:'short' }}
-      </td>
-      <td>
-        {{ launch.launchSiteName }}
-      </td>
-      <td>
-        @if (launch.links.videoLink) {
-          <a [href]="launch.links.videoLink" target="_blank">Video</a>
-        }
-        @if (launch.links.presskitLink) {
-          <a [href]="launch.links.presskitLink" target="_blank">Presskit</a>
-        }
-        @if (launch.links.articleLink) {
-          <a [href]="launch.links.articleLink" target="_blank">Article</a>
-        }
-        @if (launch.links.wikipediaLink) {
-          <a [href]="launch.links.wikipediaLink" target="_blank">Wikipedia</a>
-        }
-      </td>
-    </tr>
-    <tr>
-      <td colspan="8">
-        {{ launch.details }}
-      </td>
-    </tr>
-    </tbody>
-  }
-</table>
+

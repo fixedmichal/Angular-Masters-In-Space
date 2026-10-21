@@ -14,7 +14,12 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "dev-api/*": ["./projects/dev-api/*"],
+      "dev-api/*": [
+        "./projects/dev-api/*"
+      ],
+      "shared-lib": [
+        "./dist/shared-lib"
+      ],
       "space-api/*": ["./projects/space-api/*"]
     }
   },
@@ -28,6 +33,12 @@
   "references": [
     {
       "path": "./projects/space-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/shared-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/shared-lib/tsconfig.spec.json"
     }
   ]
 }
