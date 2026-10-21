@@ -1,29 +1,46 @@
-import { Component, input, InputSignal, WritableSignal, signal, output, OutputEmitterRef } from '@angular/core';
+import {
+  Component,
+  input,
+  InputSignal,
+  WritableSignal,
+  signal,
+  output,
+  OutputEmitterRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-launch-details',
-  imports: [],
   templateUrl: './launch-details.component.html',
   styleUrl: './launch-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LaunchDetailsComponent {
-public readonly details: InputSignal<string | null> = input.required(); 
+  public readonly details: InputSignal<string | null> = input.required();
 
-protected readonly changedDetails: OutputEmitterRef<string> = output();
+  protected readonly changedDetails: OutputEmitterRef<string> = output();
 
-protected readonly isEditMode: WritableSignal<boolean> = signal(false)
+  protected readonly isEditMode: WritableSignal<boolean> = signal(false);
 
-protected turnEditModeOn(): void {
-  this.isEditMode.set(true)
-}
+  protected turnEditModeOn(): void {
+    this.isEditMode.set(true);
+  }
 
-protected turnEditModeOff(): void {
-  this.isEditMode.set(false)
-}
+  protected turnEditModeOff(): void {
+    this.isEditMode.set(false);
+  }
 
-protected emitChangedDetails(newDetails: string): void {
-  this.changedDetails.emit(newDetails);
-  this.turnEditModeOff();
-}
+  protected emitChangedDetails(newDetails: string): void {
+    this.changedDetails.emit(newDetails);
+    this.turnEditModeOff();
+  }
 
+  // formattedDetails(): string {
+  //   return (
+  //     this.details()
+  //       ?.split('')
+  //       .map((char) => char.toUpperCase())
+  //       .join('') ?? ''
+  //   );
+  // }
 }

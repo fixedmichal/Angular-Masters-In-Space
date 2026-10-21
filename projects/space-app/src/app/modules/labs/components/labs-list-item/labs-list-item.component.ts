@@ -1,5 +1,10 @@
 // tslint:disable:component-selector
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { Lab } from 'space-api/types';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MoonsService } from 'space-api/services';
@@ -8,16 +13,16 @@ import { MoonsService } from 'space-api/services';
   selector: 'tbody[appLabsListItem]',
   templateUrl: './labs-list-item.component.html',
   styleUrls: ['./labs-list-item.component.css'],
-  imports: []
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabsListItemComponent {
-  private moonService = inject(MoonsService)
+  private moonService = inject(MoonsService);
 
   lab = input.required<Lab>();
 
   moonName = rxResource({
     params: () => ({ moonId: this.lab().details.moonId }),
-    stream: ({params}) => this.moonService.getMoonName(params.moonId),
-    defaultValue: ''
-  })
+    stream: ({ params }) => this.moonService.getMoonName(params.moonId),
+    defaultValue: '',
+  });
 }

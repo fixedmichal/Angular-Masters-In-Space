@@ -1,6 +1,10 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import {
+  bootstrapApplication,
+  enableDebugTools,
+} from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
 bootstrapApplication(AppComponent, appConfig)
-  .catch(err => console.error(err));
+  .then((app) => enableDebugTools(app.components[0]))
+  .catch((err) => console.error(err));

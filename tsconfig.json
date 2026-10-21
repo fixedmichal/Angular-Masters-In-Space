@@ -30,15 +30,9 @@
     "strictTemplates": true
   },
   "files": [],
-  "references": [
+    "references": [
     {
       "path": "./projects/space-app/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/shared-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/shared-lib/tsconfig.spec.json"
     }
   ]
 }

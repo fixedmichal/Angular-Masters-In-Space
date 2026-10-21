@@ -1,22 +1,36 @@
-import { Component, inject } from '@angular/core';
-import { LaunchesService } from 'space-api/services';
-import { LaunchDetailsUpdate } from 'space-api/types';
-import { AsyncPipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { LaunchDetailsUpdate, LaunchesQueryParams } from 'space-api/types';
 import { LaunchesListComponent } from '../../components/launches-list/launches-list.component';
+import { LaunchesStateService } from '../launches-state.service';
+import { ResourceWrapperComponent } from '../../../../components/resource-wrapper/resource-wrapper.component';
+import { LaunchesFiltersComponent } from '../../components/launches-filters/launches-filters.component';
 
 @Component({
   selector: 'app-launches',
   templateUrl: './launches.component.html',
   styleUrls: ['./launches.component.scss'],
-  imports: [AsyncPipe, LaunchesListComponent]
+  imports: [
+    // ResourceWrapperComponent,
+    LaunchesListComponent,
+    LaunchesFiltersComponent,
+  ],
+  providers: [LaunchesStateService],
 })
 export class LaunchesComponent {
-  private launchesService = inject(LaunchesService);
+  private launchesStateService = inject(LaunchesStateService);
 
-  protected readonly launches = this.launchesService.getLaunches()
+  protected readonly queryParams = this.launchesStateService.queryParams;
+  protected readonly launches = computed(() =>
+    this.launchesStateService.launches.hasValue()
+      ? this.launchesStateService.launches.value()
+      : undefined,
+  );
 
   onLaunchDetailsUpdate($event: LaunchDetailsUpdate): void {
-   this.launchesService.updateDetails($event).subscribe();
+    this.launchesStateService.updateLaunchDetails($event);
   }
 
+  searchLaunches(params: LaunchesQueryParams): void {
+    this.launchesStateService.searchLaunches(params);
+  }
 }

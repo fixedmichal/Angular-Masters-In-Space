@@ -1,9 +1,11 @@
 @if (isEditMode()) {
   <div>
-    <textarea #detailsInput autofocus>{{details()}}</textarea>
+    <textarea #detailsInput autofocus>{{ details() }}</textarea>
     <button type="button" (click)="turnEditModeOff()">Anuluj</button>
-    <button type="button" (click)="emitChangedDetails(detailsInput.value)">Zapisz</button>
+    <button type="button" (click)="emitChangedDetails(detailsInput.value)">
+      Zapisz
+    </button>
   </div>
 } @else {
-  <div class="read" (click)="turnEditModeOn()">{{details()}}</div>
+  <div class="read" (click)="turnEditModeOn()">{{ details() }}</div>
 }

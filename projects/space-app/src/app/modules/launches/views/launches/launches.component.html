@@ -1,6 +1,15 @@
 <h2>Starty SpaceX</h2>
-@if (launches | async; as launches) {
-<app-launches-list [launches]="launches | async" (launchDetailsUpdate)="onLaunchDetailsUpdate($event)"></app-launches-list>
+
+<app-launches-filters
+  (paramsChange)="searchLaunches($event)"
+  [params]="queryParams()"
+/>
+
+@let launchesValues = launches();
+
+@if (launchesValues) {
+  <app-launches-list
+    [launches]="launchesValues"
+    (launchDetailsUpdate)="onLaunchDetailsUpdate($event)"
+  ></app-launches-list>
 }
-
-
