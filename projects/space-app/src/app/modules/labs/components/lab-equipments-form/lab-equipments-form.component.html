@@ -1,6 +1,19 @@
-<button type="button" (click)="addEquipment()">Dodaj</button>
-@for (form of forms(); track form; let index = $index) {
-  <app-equipment-form [form]="form">
-    <button type="button" class="remove-button" (click)="removeEquipment(index)">Usuń</button>
-  </app-equipment-form>
+@let formsState = forms();
+
+@if (formsState().disabled()) {
+  <p>{{ formsState().disabledReasons()[0].message }}</p>
+} @else {
+  <button type="button" (click)="addEquipment()">Dodaj</button>
+
+  @for (form of forms(); track form; let index = $index) {
+    <app-equipment-form [form]="form">
+      <button
+        type="button"
+        class="remove-button"
+        (click)="removeEquipment(index)"
+      >
+        Usuń
+      </button>
+    </app-equipment-form>
+  }
 }

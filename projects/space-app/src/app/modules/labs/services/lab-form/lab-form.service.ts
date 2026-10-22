@@ -1,19 +1,36 @@
 import { Injectable, WritableSignal } from '@angular/core';
 import { Lab } from 'space-api/types';
-import { applyEach, FieldTree, form, required } from '@angular/forms/signals';
+import {
+  applyEach,
+  disabled,
+  FieldTree,
+  form,
+  required,
+} from '@angular/forms/signals';
 
 @Injectable({ providedIn: 'root' })
 export class LabFormService {
   formToLab(form: FieldTree<Lab>): Lab {
-    return form().value();
+    const formValue = form().value();
+
+    return form.equipments().disabled()
+      ? { ...formValue, equipments: [] }
+      : formValue;
   }
 
   addEquipment(form: FieldTree<Lab>): void {
-    // TODO zaimplementuj
+    form
+      .equipments()
+      .value.update((equipments) => [
+        ...equipments,
+        { name: '', tag: '', description: '' },
+      ]);
   }
 
   removeEquipment(form: FieldTree<Lab>, index: number): void {
-    // TODO zaimplementuj
+    form
+      .equipments()
+      .value.update((equipments) => equipments.filter((_, i) => i !== index));
   }
 
   buildForm(lab: WritableSignal<Lab>): FieldTree<Lab> {
@@ -22,9 +39,16 @@ export class LabFormService {
       required(schema.details.moonId);
 
       applyEach(schema.equipments, (equipmentSchema) => {
-        required(equipmentSchema.name);
+        required(equipmentSchema.name, {
+          when: ({ valueOf }) => valueOf(schema.details.enableTags),
+        });
         required(equipmentSchema.tag);
       });
+      disabled(schema.equipments, ({ valueOf }) =>
+        valueOf(schema.details.autonomous)
+          ? 'Nie można zarządzać wyposażeniem gdy laboratorium jest autonomiczne'
+          : false,
+      );
     });
   }
 }
