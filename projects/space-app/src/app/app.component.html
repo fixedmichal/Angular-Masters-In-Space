@@ -3,9 +3,13 @@
   <a routerLink="/launches" routerLinkActive="active">Loty kosmiczne</a>
   <a routerLink="/labs" routerLinkActive="active">Laboratoria</a>
   <a routerLink="/moons" routerLinkActive="active">Księżyce</a>
-  <a routerLink="/martian-calendar" routerLinkActive="active">Czas marsjański</a>
+  <a routerLink="/martian-calendar" routerLinkActive="active"
+    >Czas marsjański</a
+  >
 </div>
 <div class="container">
+  <p>Wersja aplikacji: {{ appVersion }}</p>
+
   <router-outlet></router-outlet>
 </div>
 

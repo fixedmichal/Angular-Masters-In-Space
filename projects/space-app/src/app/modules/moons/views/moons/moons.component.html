@@ -1,7 +1,20 @@
 <h2>Księżyce</h2>
 
+<label>
+  Search Moons:
+  <input type="text" (input)="query.next($event.target.value)" />
+</label>
+
+<label>
+  <input type="checkbox" (change)="toggleIncludePlanets()" />
+  Include Planets
+</label>
+
 <ul>
   @for (moon of moons | async; track moon.id) {
-    <li><strong>{{moon.name}} ({{moon.planet}})</strong> - {{moon.description}}</li>
+    <li>
+      <strong>{{ moon.name }} ({{ moon.planet }})</strong> -
+      {{ moon.description }}
+    </li>
   }
 </ul>

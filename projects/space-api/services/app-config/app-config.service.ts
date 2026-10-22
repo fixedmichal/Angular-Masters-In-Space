@@ -5,26 +5,34 @@ import { catchError, tap } from 'rxjs/operators';
 import { AppConfig } from '../../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppConfigService {
   private http = inject(HttpClient);
 
   currentAppConfig: AppConfig = {
-    features: {labs: true, launches: true, moons: true, martianCalendar: true, start: true},
-    version: 'unknown'
+    features: {
+      labs: true,
+      launches: true,
+      moons: true,
+      martianCalendar: true,
+      start: true,
+    },
+    version: 'unknown',
   };
 
   getAppConfig(): Observable<AppConfig> {
     return this.http.get<AppConfig>(`/api/app-config`).pipe(
-      catchError(error => {
-        const cachedAppConfig = JSON.parse(localStorage.getItem('app-config') ?? 'null');
+      catchError((error) => {
+        const cachedAppConfig = JSON.parse(
+          localStorage.getItem('app-config') ?? 'null',
+        );
         return cachedAppConfig ? of(cachedAppConfig) : throwError(error);
       }),
-      tap(appConfig => {
+      tap((appConfig) => {
         localStorage.setItem('app-config', JSON.stringify(appConfig));
         this.currentAppConfig = appConfig;
-      })
+      }),
     );
   }
 }
