@@ -1,0 +1,27 @@
+<label>
+  Planeta
+  <select
+    #planetSelect
+    [value]="selectedPlanet()"
+    (change)="onPlanetChange(planetSelect.value)"
+  >
+    @for (planet of planetOptions(); track planet) {
+      <option [value]="planet">{{ planet }}</option>
+    }
+  </select>
+</label>
+
+<label>
+  Księżyc
+  <select
+    #moonSelect
+    [value]="value() ?? ''"
+    [class.ng-invalid]="invalid()"
+    (change)="onMoonChange(moonSelect.value)"
+  >
+    <option value="">Wybierz księżyc</option>
+    @for (moon of moonOptions(); track moon.id) {
+      <option [value]="moon.id">{{ moon.name }}</option>
+    }
+  </select>
+</label>
