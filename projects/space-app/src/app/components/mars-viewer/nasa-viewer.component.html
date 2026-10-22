@@ -1,4 +1,11 @@
 <div class="nasa-viewer-menu">
+  <label>Wybierz typ obrazów:</label>
+  @for (imageType of availableImageTypes(); track imageType) {
+    <button [class.selected]="selectedImageType() === imageType" (click)="selectImageType(imageType)">{{ imageType }}</button>
+  }
+</div>
+
+<div class="nasa-viewer-menu">
   <label>Wybierz obraz:</label>
   @for (image of availableImages(); track image) {
     <button [class.selected]="selectedImage() === image" (click)="selectImage(image)">{{ image }}</button>

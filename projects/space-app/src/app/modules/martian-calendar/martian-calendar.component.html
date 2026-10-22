@@ -8,5 +8,26 @@
 </ul>
 
 <p>
-  Aktualna data i czas na marsie to: <strong>{{currentDate}}</strong>
+  Podaj datę ziemską:
+</p>
+
+<div class="calendar-form">
+  <div class="form-field">
+    <label for="earth-year">Rok</label>
+    <input id="earth-year" type="number" [formField]="calendarForm.year">
+  </div>
+
+  <div class="form-field">
+    <label for="earth-month">Miesiąc</label>
+    <input id="earth-month" type="number" [formField]="calendarForm.month">
+  </div>
+
+  <div class="form-field">
+    <label for="earth-day">Dzień</label>
+    <input id="earth-day" type="number" [formField]="calendarForm.day">
+  </div>
+</div>
+
+<p>
+  Wyliczona data marsjańska: <strong>{{martianDate()}}</strong>
 </p>

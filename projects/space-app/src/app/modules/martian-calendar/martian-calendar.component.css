@@ -1,0 +1,17 @@
+.calendar-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+
+.form-field input {
+  padding: 6px 8px;
+}

@@ -9,3 +9,13 @@
     SpaceX, a także będziesz mógł skatalogować nasze jednostki badawcze rozsiane w różnych zakątkach Układu Słonecznego.
   </div>
 </section>
+
+@defer (on interaction(nasaViewerPlaceholder)) {
+  <app-nasa-viewer />
+} @placeholder {
+  <button #nasaViewerPlaceholder type="button">Kliknij, aby załadować obrazy NASA</button>
+} @loading {
+  <p>Ładowanie obrazów NASA...</p>
+} @error {
+  <p>Nie udało się załadować komponentu z obrazami NASA.</p>
+}

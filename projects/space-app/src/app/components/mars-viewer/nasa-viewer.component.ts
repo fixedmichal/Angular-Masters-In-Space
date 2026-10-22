@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, linkedSignal, signal } from '@angular/core';
 
 type ImageType = 'planets' | 'telescopes';
 
@@ -12,11 +12,22 @@ export class NasaViewerComponent {
   private images: Record<ImageType, string[]> = {
     planets: ['Earth', 'Mars', 'Mercury', 'Venus'],
     telescopes: ['Hubble', 'Kepler', 'NuSTAR', 'Spitzer', 'TESS', 'Webb']
+  };
+
+  availableImageTypes = signal<ImageType[]>(Object.keys(this.images) as ImageType[]);
+
+  selectedImageType = signal<ImageType>(this.availableImageTypes()[0]);
+
+  availableImages = computed(() => this.images[this.selectedImageType()]);
+
+  selectedImage = linkedSignal({
+    source: this.selectedImageType,
+    computation: (selectedImageType) => this.images[selectedImageType][0],
+  });
+
+  selectImageType(imageType: ImageType) {
+    this.selectedImageType.set(imageType);
   }
-
-  availableImages = computed(() => Object.values(this.images).flat());
-
-  selectedImage = signal<string>(this.availableImages()[0]);
 
   selectImage(image: string) {
     this.selectedImage.set(image);
