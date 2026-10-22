@@ -18,7 +18,9 @@ export class IfFeatureEnabledDirective {
   viewContainerRef = inject(ViewContainerRef);
   appConfig = inject(APP_CONFIG);
 
-  featureName: InputSignal<keyof AppConfig['features']> = input.required();
+  featureName: InputSignal<keyof AppConfig['features']> = input.required({
+    alias: 'appIfFeatureEnabled',
+  });
 
   constructor() {
     effect(() => {

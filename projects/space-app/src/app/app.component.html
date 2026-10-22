@@ -1,11 +1,12 @@
 <div class="header">
-  <a routerLink="/start" routerLinkActive="active">Space App</a>
-  <a routerLink="/launches" routerLinkActive="active">Loty kosmiczne</a>
-  <a routerLink="/labs" routerLinkActive="active">Laboratoria</a>
-  <a routerLink="/moons" routerLinkActive="active">Księżyce</a>
-  <a routerLink="/martian-calendar" routerLinkActive="active"
-    >Czas marsjański</a
-  >
+  @for (item of navItems; track item) {
+    <a
+      *appIfFeatureEnabled="navItemFeatureNames[item]"
+      [routerLink]="navItemRouterLinks[item]"
+      routerLinkActive="active"
+      >{{ navItemLabels[item] }}</a
+    >
+  }
 </div>
 <div class="container">
   <p>Wersja aplikacji: {{ appVersion }}</p>

@@ -5,8 +5,8 @@ export const mockedAppConfig: AppConfig = {
   features: {
     start: true,
     launches: true,
-    labs: true,
+    labs: false,
     moons: true,
-    martianCalendar: true
-  }
+    martianCalendar: true,
+  },
 };
