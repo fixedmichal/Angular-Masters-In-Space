@@ -1,13 +1,13 @@
 <h2>Księżyce</h2>
 
-<label>
-  Search Moons:
+<label class="search-field">
+  Szukaj:
   <input type="text" (input)="query.next($event.target.value)" />
 </label>
 
-<label>
+<label class="include-planets-checkbox">
   <input type="checkbox" (change)="toggleIncludePlanets()" />
-  Include Planets
+  Uwzględnij planety
 </label>
 
 <ul>
