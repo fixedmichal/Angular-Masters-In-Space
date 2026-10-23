@@ -1,13 +1,18 @@
-<div class="header">
-  @for (item of navItems; track item) {
-    <a
-      *appIfFeatureEnabled="navItemFeatureNames[item]"
-      [routerLink]="navItemRouterLinks[item]"
-      routerLinkActive="active"
-      >{{ navItemLabels[item] }}</a
-    >
-  }
-</div>
+@if (navigationVisible()) {
+  <div class="header">
+    @for (item of navItems; track item) {
+      <a
+        *appIfFeatureEnabled="navItemFeatureNames[item]"
+        [routerLink]="navItemRouterLinks[item]"
+        routerLinkActive="active"
+        >{{ navItemLabels[item] }}</a
+      >
+    }
+  </div>
+  <button (click)="hideNavigation()">Ukryj nawigację</button>
+} @else {
+  <button (click)="showNavigation()">Pokaż nawigację</button>
+}
 
 @if (updateAvailable()) {
   <div class="update">

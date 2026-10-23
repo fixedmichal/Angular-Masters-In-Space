@@ -19,6 +19,9 @@ import { AppConfig } from 'space-api/types';
 import { Observable } from 'rxjs';
 import { busyInterceptor } from './services/busy.interceptor';
 import { provideServiceWorker } from '@angular/service-worker';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { appReducer } from './app.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,10 +30,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([busyInterceptor])),
     provideAppImageLoader(),
-    provideAppInitializer(appConfigInitializer), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }),
+    provideStore({ app: appReducer }),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideAppInitializer(appConfigInitializer),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 };
 

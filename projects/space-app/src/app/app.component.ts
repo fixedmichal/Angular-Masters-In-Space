@@ -1,7 +1,13 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { A2sCommComponent } from 'a2s-comm';
 import { APP_CONFIG } from './app-config.token';
+import {
+  hideNavigation as hideNavigationAction,
+  showNavigation as showNavigationAction,
+} from './app.actions';
 import { IfFeatureEnabledDirective } from './modules/shared/if-feature-enabled.directive';
 import {
   NAV_ITEM_FEATURE_NAMES,
@@ -10,9 +16,9 @@ import {
   NavItem,
 } from './nav-item';
 import { isBusy } from './services/busy.interceptor';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { UpdateService } from './services/update.service';
 import { PushService } from './services/push.service';
+import { selectNavigationVisible } from './app.selectors';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +34,11 @@ import { PushService } from './services/push.service';
 })
 export class AppComponent {
   protected readonly appConfig = inject(APP_CONFIG);
+  private readonly store = inject(Store);
+  protected readonly navigationVisible = toSignal(
+    this.store.select(selectNavigationVisible),
+    { initialValue: true },
+  );
 
   protected readonly navItems: NavItem[] = [
     NavItem.Start,
@@ -55,6 +66,14 @@ export class AppComponent {
 
   reloadApp(): void {
     this.updateService.reloadApp();
+  }
+
+  showNavigation(): void {
+    this.store.dispatch(showNavigationAction());
+  }
+
+  hideNavigation(): void {
+    this.store.dispatch(hideNavigationAction());
   }
 
   requestSubscription() {
