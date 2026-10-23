@@ -21,17 +21,18 @@
     {{ launch().launchSiteName }}
   </td>
   <td>
-    @if (launch().links.videoLink; as url) {
-      <a [href]="url" target="_blank">Video</a>
-    }
     @if (launch().links.presskitLink; as url) {
-      <a [href]="url" target="_blank">Presskit</a>
+      <a [routerLink]="['', { outlets: { browser: ['url', url] } }]"
+        >Presskit</a
+      >
     }
     @if (launch().links.articleLink; as url) {
-      <a [href]="url" target="_blank">Article</a>
+      <a [routerLink]="['', { outlets: { browser: ['url', url] } }]">Article</a>
     }
     @if (launch().links.wikipediaLink; as url) {
-      <a [href]="url" target="_blank">Wikipedia</a>
+      <a [routerLink]="['', { outlets: { browser: ['url', url] } }]"
+        >Wikipedia</a
+      >
     }
   </td>
 </tr>

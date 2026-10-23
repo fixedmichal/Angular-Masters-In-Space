@@ -1,0 +1,9 @@
+@if (fieldState().valid()) {
+  ✅
+} @else if (fieldState().invalid()) {
+  ❌
+} @else if (fieldState().disabled()) {
+  🔒
+} @else if (fieldState().readonly()) {
+  👀
+}

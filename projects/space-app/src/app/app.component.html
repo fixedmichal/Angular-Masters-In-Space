@@ -8,10 +8,16 @@
     >
   }
 </div>
+
+@if (busy()) {
+  <div class="loading">Trwa przetwarzanie danych...</div>
+}
+
 <div class="container">
   <p>Wersja aplikacji: {{ appVersion }}</p>
 
   <router-outlet></router-outlet>
 </div>
 
+<router-outlet name="browser"></router-outlet>
 <a2s-comm></a2s-comm>

@@ -9,6 +9,8 @@ import {
   NAV_ITEM_ROUTER_LINKS,
   NavItem,
 } from './nav-item';
+import { isBusy } from './services/busy.interceptor';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -37,4 +39,6 @@ export class AppComponent {
   protected readonly navItemRouterLinks = NAV_ITEM_ROUTER_LINKS;
   protected readonly navItemFeatureNames = NAV_ITEM_FEATURE_NAMES;
   protected readonly navItemLabels = NAV_ITEM_LABELS;
+
+  busy = toSignal(isBusy);
 }

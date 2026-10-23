@@ -62,7 +62,8 @@
                   "with": "projects/space-app/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "projects/space-app/ngsw-config.json"
             },
             "development": {
               "optimization": false,

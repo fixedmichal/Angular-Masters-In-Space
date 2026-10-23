@@ -29,6 +29,11 @@ export const routes: Routes = [
     loadComponent: () => import('./views/forbidden/forbidden.component'),
   },
   {
+    path: 'url/:url',
+    outlet: 'browser',
+    loadComponent: () => import('./views/browser/browser.component'),
+  },
+  {
     path: '**',
     redirectTo: 'start',
     pathMatch: 'full',
