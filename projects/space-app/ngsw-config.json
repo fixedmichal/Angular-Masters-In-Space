@@ -26,5 +26,23 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "httpResponses",
+      "urls": [
+        "**/api/launches*",
+        "**/api/labs/*",
+        "**/api/labs",
+        "**/api/moons",
+        "**/images2.imgbox.com*"
+      ],
+      "cacheConfig": {
+        "maxSize": 50,
+        "maxAge": "1d",
+        "timeout": "3s",
+        "strategy": "freshness"
+      }
+    }
   ]
 }

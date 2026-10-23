@@ -9,6 +9,26 @@
   }
 </div>
 
+@if (updateAvailable()) {
+  <div class="update">
+    Dostępna aktualizacja aplikacji
+    <button (click)="activateUpdate()">Aktywuj</button>
+  </div>
+}
+
+@if (isSubscribed()) {
+  <button (click)="revokeSubscription()">Wyłącz powiadomienia</button>
+} @else {
+  <button (click)="requestSubscription()">Włącz powiadomienia</button>
+}
+
+@if (unrecoverableError()) {
+  <div class="error">
+    Wystąpił błąd krytyczny
+    <button (click)="reloadApp()">Odśwież stronę</button>
+  </div>
+}
+
 @if (busy()) {
   <div class="loading">Trwa przetwarzanie danych...</div>
 }
